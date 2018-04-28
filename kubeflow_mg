@@ -1,0 +1,66 @@
+
+NAMESPACE=kube-flow
+kubectl create namespace ${NAMESPACE}
+
+
+APP_NAME=kubeflow.myth.tech
+ks init ${APP_NAME}
+cd ${APP_NAME}
+ks env set default --namespace ${NAMESPACE}
+
+
+ 
+VERSION=v0.1.2
+ks registry add kubeflow github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow
+ks pkg install kubeflow/core@${VERSION}
+ks pkg install kubeflow/tf-serving@${VERSION}
+ks pkg install kubeflow/tf-job@${VERSION}
+
+
+ks apply ${KF_ENV} -c kubeflow-core
+
+
+ks show ${KF_ENV} -c kubeflow-core
+
+
+####images
+from gcr.io/kubeflow-images-public/tf_operator:v20180329-a7511ff
+from gcr.io/kubeflow-images-public/tf_operator:v20180226-403
+from gcr.io/kubeflow-images-public/envoy:v20180309-0fb4886b463698702b6a08955045731903a18738
+from gcr.io/kubeflow-images-public/tf-model-server-http-proxy:v20180327-995786ec
+from gcr.io/kubeflow-images-public/tf-model-server-cpu:v20180327-995786ec
+from gcr.io/kubeflow-images-public/tf-model-server-gpu:v20180327-995786ec
+from gcr.io/kubeflow-images-public/tensorflow-1.7.0-notebook-gpu:v20180419-0ad94c4e
+from gcr.io/kubeflow/jupyterhub-k8s:1.0.1
+from gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3 
+from gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3  
+from quay.io/datawire/ambassador:0.30.1
+from quay.io/datawire/statsd:0.30.1
+from quay.io/jetstack/cert-manager-controller:v0.2.3
+from quay.io/jetstack/cert-manager-ingress-shim:v0.2.3
+from quay.io/kubernetes_incubator/nfs-provisioner:v1.0.8
+from gcr.io/google_containers/spartakus-amd64:v1.0.0
+
+
+
+i.k8s/gcr.io/kubeflow-images-public/tf_operator:v20180329-a7511ff
+i.k8s/gcr.io/kubeflow-images-public/tf_operator:v20180226-403
+i.k8s/gcr.io/kubeflow-images-public/envoy:v20180309-0fb4886b463698702b6a08955045731903a18738
+i.k8s/gcr.io/kubeflow-images-public/tf-model-server-http-proxy:v20180327-995786ec
+i.k8s/gcr.io/kubeflow-images-public/tf-model-server-cpu:v20180327-995786ec
+i.k8s/gcr.io/kubeflow-images-public/tf-model-server-gpu:v20180327-995786ec
+i.k8s/gcr.io/kubeflow-images-public/tensorflow-1.7.0-notebook-gpu:v20180419-0ad94c4e
+i.k8s/gcr.io/kubeflow/jupyterhub-k8s:1.0.1
+i.k8s/gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3 
+i.k8s/gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3  
+i.k8s/quay.io/datawire/ambassador:0.30.1
+i.k8s/quay.io/datawire/statsd:0.30.1
+i.k8s/quay.io/jetstack/cert-manager-controller:v0.2.3
+i.k8s/quay.io/jetstack/cert-manager-ingress-shim:v0.2.3
+i.k8s/quay.io/kubernetes_incubator/nfs-provisioner:v1.0.8
+i.k8s/gcr.io/google_containers/spartakus-amd64:v1.0.0
+
+ 
+
+
+

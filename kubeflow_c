@@ -1,0 +1,46 @@
+https://www.katacoda.com/kubeflow/scenarios/deploying-kubeflow
+
+Kubeflow Components
+Kubeflow has three core components.
+
+TF Job Operator and Controller: Extension to Kubernetes to simplify deployment of distributed TensorFlow workloads. By using an Operator, Kubeflow is capable of automatically configuring the master, worker and parameterized server configuration. Workloads can be deployed with a TFJob.
+
+TF Hub: Running instances of JupyterHub, enabling you to work with Jupyter Notebooks.
+
+Model Server: Deploying a trained TensorFlow models for clients to access and use for future predictions.
+
+These three models will be used to deploy different workloads in the following steps.
+
+
+Deploying Kubeflow
+With Kubeflow being an extension to Kubernetes, all the components need to be deployed to the platform. They are available in the Github repository which has already been cloned for you to the kubeflow/components/ directory.
+
+You can see the list of the components with:
+
+ls -lha kubeflow/components/
+
+To deploy them to Kubernetes, run the command:
+
+kubectl apply -f kubeflow/components/ -R
+
+Once deployed, you will notice additional pods and services running to handle Kubeflow and TensorFlow workloads:
+
+kubectl get all
+
+
+Example TensorFlow Application
+
+Deploying TfJob
+
+View Job Progress and Results
+
+
+Deploy JupyterHub
+
+
+Access Model Server
+
+
+
+
+
